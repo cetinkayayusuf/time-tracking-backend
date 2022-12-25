@@ -12,11 +12,11 @@ export class CreateWorkDto {
   @IsNotEmpty()
   title: string;
 
-  @IsDate()
+  @IsString()
   @IsNotEmpty()
   start: string;
 
-  @IsDate()
+  @IsString()
   @IsNotEmpty()
   end: string;
 

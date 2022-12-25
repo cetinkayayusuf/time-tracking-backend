@@ -26,13 +26,6 @@ export class WorkController {
     return this.workService.getWorks(userId);
   }
 
-  @Get(':projectId')
-  getWorksByProjectId(
-    @GetUser('id') userId: number,
-    @Param('projectId', ParseIntPipe) projectId: number,
-  ) {
-    return this.workService.getWorksByProjectId(userId, projectId);
-  }
   @Get(':id')
   getWorkById(
     @GetUser('id') userId: number,

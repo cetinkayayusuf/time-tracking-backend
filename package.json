@@ -14,8 +14,8 @@
 
     "prisma:test:studio": "npx dotenv -e .env.test -- prisma studio",
     "prisma:test:deploy": "dotenv -e .env.test -- prisma migrate deploy",
-    "db:test:rm": "docker compose rm test-nestjs-api-db -s -f -v",
-    "db:test:up": "docker compose up test-nestjs-api-db -d",
+    "db:test:rm": "docker compose rm test-time-tracking-db -s -f -v",
+    "db:test:up": "docker compose up test-time-tracking-db -d",
     "db:test:restart": "npm run db:test:rm && npm run db:test:up && sleep 1&& npm run prisma:test:deploy",
 
     "prebuild": "rimraf dist",

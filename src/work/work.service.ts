@@ -1,6 +1,8 @@
 import { ForbiddenException, Injectable } from '@nestjs/common';
 import { CreateWorkDto, EditWorkDto } from './dto';
 import { PrismaService } from '../prisma/prisma.service';
+import { start } from 'pactum/src/exports/mock';
+import any = jasmine.any;
 
 @Injectable()
 export class WorkService {
@@ -37,6 +39,8 @@ export class WorkService {
       data: {
         userId,
         ...dto,
+        start: new Date(dto.start),
+        end: new Date(dto.start),
       },
     });
 
@@ -55,12 +59,23 @@ export class WorkService {
     if (!work || work.userId !== userId)
       throw new ForbiddenException('Access to resource denied');
 
+    const mutatedDto = { ...dto };
+    delete mutatedDto.start;
+    delete mutatedDto.end;
+    if (dto.start !== undefined) {
+      // @ts-ignore
+      mutatedDto.start = new Date(dto.start);
+    }
+    if (dto.end !== undefined) {
+      // @ts-ignore
+      mutatedDto.end = new Date(dto.end);
+    }
     return this.prisma.work.update({
       where: {
         id: workId,
       },
       data: {
-        ...dto,
+        ...mutatedDto,
       },
     });
   }

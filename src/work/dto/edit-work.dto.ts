@@ -5,11 +5,11 @@ export class EditWorkDto {
   @IsOptional()
   title?: string;
 
-  @IsDate()
+  @IsString()
   @IsOptional()
   start?: string;
 
-  @IsDate()
+  @IsString()
   @IsOptional()
   end?: string;
 
