@@ -3,3 +3,5 @@ Used:
 - PrismaORM => ORM
 - Pactum => e2e tests
 - NestJs => Rest api
+
+JWT Authentication
