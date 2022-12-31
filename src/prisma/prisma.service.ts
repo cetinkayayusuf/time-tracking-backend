@@ -1,10 +1,13 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, OnModuleInit } from '@nestjs/common';
 import { PrismaClient } from '@prisma/client';
 import { ConfigService } from '@nestjs/config';
 
 // If there is no injection, don't have to use Injectable
 @Injectable()
-export class PrismaService extends PrismaClient {
+export class PrismaService
+  extends PrismaClient
+  implements OnModuleInit, OnModuleInit
+{
   constructor(config: ConfigService) {
     super({
       datasources: {
@@ -13,6 +16,14 @@ export class PrismaService extends PrismaClient {
         },
       },
     });
+  }
+
+  async onModuleInit() {
+    await this.$connect();
+  }
+
+  async onModuleDestroy() {
+    await this.$disconnect();
   }
 
   cleanDb() {

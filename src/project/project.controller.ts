@@ -11,13 +11,13 @@ import {
   Post,
   UseGuards,
 } from '@nestjs/common';
-import { JwtGuard } from '../auth/guard';
+import { AtGuard } from '../auth/guard';
 import { GetUser } from '../auth/decorator';
 import { EditProjectDto } from './dto';
 import { ProjectService } from './project.service';
 import { CreateProjectDto } from './dto/create-project.dto';
 
-@UseGuards(JwtGuard)
+@UseGuards(AtGuard)
 @Controller('projects')
 export class ProjectController {
   constructor(private projectService: ProjectService) {}

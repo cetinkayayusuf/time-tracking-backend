@@ -11,12 +11,12 @@ import {
   Post,
   UseGuards,
 } from '@nestjs/common';
-import { JwtGuard } from '../auth/guard';
+import { AtGuard } from '../auth/guard';
 import { WorkService } from './work.service';
 import { GetUser } from '../auth/decorator';
 import { CreateWorkDto, EditWorkDto } from './dto';
 
-@UseGuards(JwtGuard)
+@UseGuards(AtGuard)
 @Controller('works')
 export class WorkController {
   constructor(private workService: WorkService) {}
