@@ -11,12 +11,12 @@ import {
   Post,
   UseGuards,
 } from '@nestjs/common';
-import { JwtGuard } from '../auth/guard';
+import { AtGuard } from '../auth/guard';
 import { GetUser } from '../auth/decorator';
 import { CreateTagDto } from './dto';
 import { TagService } from './tag.service';
 
-@UseGuards(JwtGuard)
+@UseGuards(AtGuard)
 @Controller('tags')
 export class TagController {
   constructor(private tagService: TagService) {}
